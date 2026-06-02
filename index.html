@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recursos Cíveis - Guia Interativo de Estudos</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0e0b;
+    --surface: #1a1814;
+    --surface2: #232118;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-dim: #8a6e30;
+    --text: #e8e2d6;
+    --text-muted: #9a9080;
+    --red: #c0392b;
+    --green: #27ae60;
+    --border: rgba(201,168,76,0.22);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #0f0e0b 0%, #1a1510 60%, #221a0a 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 32px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '§';
+    position: absolute;
+    font-size: 320px;
+    opacity: 0.035;
+    top: -82px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 5px 18px;
+    border-radius: 2px;
+    margin-bottom: 22px;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(30px, 5vw, 56px);
+    font-weight: 900;
+    color: var(--gold-light);
+    line-height: 1.08;
+    margin-bottom: 14px;
+  }
+
+  .hero p {
+    color: var(--text-muted);
+    font-size: 15px;
+    max-width: 620px;
+    margin: 0 auto;
+    font-style: italic;
+  }
+
+  .nav {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 18px 28px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+  }
+
+  .nav a:hover {
+    color: var(--gold);
+    border-color: var(--border);
+  }
+
+  .container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .section {
+    padding: 56px 0 40px;
+    border-bottom: 1px solid var(--border);
+    scroll-margin-top: 110px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 30px;
+  }
+
+  .section-number {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--gold-dim);
+    line-height: 1;
+    min-width: 54px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 27px;
+    font-weight: 700;
+    color: var(--gold-light);
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  p { margin-bottom: 12px; }
+
+  .highlight { color: var(--gold-light); font-weight: 600; }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 16px;
+    margin: 18px 0 24px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 22px;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .card p,
+  .card li { font-size: 14px; }
+
+  .card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .card ul li {
+    padding: 4px 0 4px 16px;
+    color: var(--text);
+    position: relative;
+  }
+
+  .card ul li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--gold-dim);
+  }
+
+  .artigo-block {
+    background: var(--surface2);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 6px 6px 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+
+  .artigo-block strong {
+    color: var(--gold);
+    display: block;
+    margin-bottom: 4px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .exemplo {
+    background: rgba(201,168,76,0.06);
+    border: 1px dashed var(--gold-dim);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 14px 0;
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  .exemplo::before {
+    content: 'Exemplo: ';
+    font-style: normal;
+    color: var(--gold);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  details {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin: 12px 0;
+    overflow: hidden;
+  }
+
+  summary {
+    cursor: pointer;
+    padding: 14px 18px;
+    color: var(--gold-light);
+    font-weight: 600;
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker { display: none; }
+
+  summary::after {
+    content: '+';
+    float: right;
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  details[open] summary::after { content: '-'; }
+
+  .details-body {
+    border-top: 1px solid var(--border);
+    padding: 16px 18px 18px;
+    color: var(--text);
+    font-size: 14px;
+  }
+
+  .table-wrap { overflow-x: auto; margin: 16px 0 22px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  th {
+    background: var(--surface2);
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    text-align: left;
+    border: 1px solid var(--border);
+  }
+
+  td {
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+  }
+
+  tr:hover td { background: rgba(201,168,76,0.04); }
+
+  .prazo {
+    display: inline-block;
+    background: rgba(201,168,76,0.15);
+    color: var(--gold-light);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 20px;
+    border: 1px solid var(--gold-dim);
+    white-space: nowrap;
+  }
+
+  .flow {
+    display: grid;
+    gap: 10px;
+    margin: 20px 0;
+  }
+
+  .flow-step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 18px;
+    font-size: 14px;
+  }
+
+  .flow-step strong {
+    color: var(--gold);
+    display: block;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  #quiz-section { padding: 56px 0 80px; }
+
+  .quiz-intro {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+    font-style: italic;
+  }
+
+  .question-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 26px;
+    margin-bottom: 24px;
+    transition: border-color 0.3s;
+  }
+
+  .question-card.answered-correct { border-color: var(--green); }
+  .question-card.answered-wrong { border-color: var(--red); }
+
+  .question-header {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 18px;
+  }
+
+  .q-num {
+    background: var(--gold-dim);
+    color: var(--bg);
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 900;
+    font-size: 13px;
+    min-width: 32px;
+    height: 32px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+
+  .q-text {
+    font-size: 15px;
+    line-height: 1.65;
+    font-weight: 600;
+    color: var(--text);
+    flex: 1;
+  }
+
+  .options { display: flex; flex-direction: column; gap: 10px; }
+
+  .option-btn {
+    background: var(--surface2);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 5px;
+    padding: 12px 18px;
+    text-align: left;
+    color: var(--text);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .option-btn:hover:not(:disabled) {
+    border-color: var(--gold-dim);
+    background: rgba(201,168,76,0.08);
+  }
+
+  .option-btn .opt-letter {
+    font-weight: 700;
+    color: var(--gold-dim);
+    min-width: 18px;
+    font-size: 13px;
+  }
+
+  .option-btn:disabled { cursor: default; }
+
+  .option-btn.correct {
+    background: rgba(39,174,96,0.15);
+    border-color: var(--green);
+    color: #a8e6c1;
+  }
+
+  .option-btn.wrong {
+    background: rgba(192,57,43,0.15);
+    border-color: var(--red);
+    color: #e8a8a0;
+  }
+
+  .feedback {
+    margin-top: 16px;
+    padding: 12px 16px;
+    border-radius: 5px;
+    font-size: 13px;
+    line-height: 1.6;
+    display: none;
+  }
+
+  .feedback.show { display: block; }
+
+  .feedback.correct-fb {
+    background: rgba(39,174,96,0.1);
+    border: 1px solid rgba(39,174,96,0.3);
+    color: #a8e6c1;
+  }
+
+  .feedback.wrong-fb {
+    background: rgba(192,57,43,0.1);
+    border: 1px solid rgba(192,57,43,0.3);
+    color: #e8a8a0;
+  }
+
+  .score-bar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px;
+    margin-top: 40px;
+    text-align: center;
+    display: none;
+  }
+
+  .score-bar.show { display: block; }
+
+  .score-num {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+
+  .score-label {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  .score-msg {
+    margin-top: 16px;
+    font-size: 16px;
+    color: var(--text);
+  }
+
+  .reset-btn {
+    margin-top: 20px;
+    background: var(--gold-dim);
+    color: var(--bg);
+    border: none;
+    padding: 12px 32px;
+    border-radius: 4px;
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: background 0.2s;
+  }
+
+  .reset-btn:hover { background: var(--gold); }
+
+  footer {
+    text-align: center;
+    padding: 40px 24px;
+    color: var(--text-muted);
+    font-size: 12px;
+    letter-spacing: 1px;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 640px) {
+    .hero { padding: 46px 20px 38px; }
+    .nav { position: static; padding: 14px 16px; }
+    .section { padding: 42px 0 32px; scroll-margin-top: 0; }
+    .section-header { align-items: flex-start; gap: 12px; }
+    .section-number { font-size: 38px; min-width: 42px; }
+    .section-title { font-size: 23px; }
+    .question-card { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-badge">Guia de Estudos</div>
+  <h1>Recursos Cíveis<br>Interativo</h1>
+  <p>Resumo explicado com exemplos, tabelas rápidas, roteiro de escolha do recurso e questões de treino.</p>
+</div>
+
+<nav class="nav">
+  <a href="#visao">Visão Geral</a>
+  <a href="#apelacao">Apelação</a>
+  <a href="#agravo-interno">Agravo Interno</a>
+  <a href="#embargos">Embargos</a>
+  <a href="#excepcionais">RE e REsp</a>
+  <a href="#agravo-resp-re">Agravo RE/REsp</a>
+  <a href="#advogado">Advogado</a>
+  <a href="#multa">Multa</a>
+  <a href="#quiz-section">Questões</a>
+</nav>
+
+<div class="container">
+
+  <section class="section" id="visao">
+    <div class="section-header">
+      <div class="section-number">01</div>
+      <div>
+        <div class="section-title">Visão Geral dos Recursos</div>
+        <div class="section-subtitle">O que é recurso · Como escolher · Prazos</div>
+      </div>
+    </div>
+
+    <p>Recurso é o instrumento usado para pedir a revisão, integração, anulação ou reforma de uma decisão judicial <span class="highlight">dentro do mesmo processo</span>. Em termos simples: alguém perdeu ou foi prejudicado por uma decisão e pede que ela seja corrigida.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-title">Perguntas para escolher o recurso</div>
+        <ul>
+          <li>A decisão é sentença?</li>
+          <li>A decisão foi tomada por relator sozinho?</li>
+          <li>A decisão tem omissão ou contradição?</li>
+          <li>O problema é constitucional?</li>
+          <li>O problema é lei federal?</li>
+          <li>O RE ou REsp foi barrado na origem?</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Regra de prazo</div>
+        <p>A regra prática para prova é: quase todos os recursos cíveis têm prazo de <span class="prazo">15 dias úteis</span>.</p>
+        <p>A exceção mais importante é embargos de declaração: <span class="prazo">5 dias úteis</span>.</p>
+      </div>
+    </div>
+
+    <div class="artigo-block">
+      <strong>Base legal principal</strong>
+      CPC, art. 994: lista os recursos cabíveis no processo civil, incluindo apelação, agravo interno, embargos de declaração, recurso extraordinário, recurso especial e agravo em recurso especial ou extraordinário.
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Recurso</th>
+            <th>Ataca o quê?</th>
+            <th>Para quê?</th>
+            <th>Prazo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Apelação</td>
+            <td>Sentença</td>
+            <td>Levar a causa ao tribunal</td>
+            <td><span class="prazo">15 dias úteis</span></td>
+          </tr>
+          <tr>
+            <td>Agravo interno</td>
+            <td>Decisão monocrática do relator</td>
+            <td>Levar ao colegiado</td>
+            <td><span class="prazo">15 dias úteis</span></td>
+          </tr>
+          <tr>
+            <td>Embargos de declaração</td>
+            <td>Qualquer decisão com vício</td>
+            <td>Corrigir omissão, contradição, obscuridade ou erro material</td>
+            <td><span class="prazo">5 dias úteis</span></td>
+          </tr>
+          <tr>
+            <td>RE / REsp</td>
+            <td>Acórdão de tribunal</td>
+            <td>Discutir Constituição ou lei federal</td>
+            <td><span class="prazo">15 dias úteis</span></td>
+          </tr>
+          <tr>
+            <td>Agravo em RE/REsp</td>
+            <td>Inadmissão de RE ou REsp</td>
+            <td>Destrancar o recurso excepcional</td>
+            <td><span class="prazo">15 dias úteis</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" id="apelacao">
+    <div class="section-header">
+      <div class="section-number">02</div>
+      <div>
+        <div class="section-title">Apelação</div>
+        <div class="section-subtitle">Sentença · Tribunal · Efeito suspensivo</div>
+      </div>
+    </div>
+
+    <p>A apelação é o recurso padrão contra <span class="highlight">sentença</span>. Quando o juiz de primeiro grau encerra a fase principal do processo e alguém não concorda, o caminho normal é apelar.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-title">Quando cabe</div>
+        <ul>
+          <li>Contra sentença</li>
+          <li>Para pedir reforma ou anulação</li>
+          <li>Para discutir certas decisões interlocutórias em preliminar</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Como funciona</div>
+        <ul>
+          <li>Interposta no primeiro grau</li>
+          <li>Apelado apresenta contrarrazões</li>
+          <li>Depois segue para o tribunal</li>
+          <li>Em regra, possui efeito suspensivo</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="artigo-block">
+      <strong>CPC, art. 1.009</strong>
+      Da sentença cabe apelação. As questões resolvidas na fase de conhecimento que não comportarem agravo de instrumento não ficam preclusas e podem ser discutidas em preliminar de apelação ou contrarrazões.
+    </div>
+
+    <div class="exemplo">O juiz julga improcedente uma ação de indenização. O autor entende que provou o dano. Ele apresenta apelação para pedir que o tribunal reforme a sentença.</div>
+
+    <details>
+      <summary>Pegadinhas de prova</summary>
+      <div class="details-body">
+        <p>Nem tudo que incomoda durante o processo gera recurso imediato. Se a decisão interlocutória não for agravável por instrumento, a parte pode levantar a questão depois, em preliminar de apelação.</p>
+        <p>Também lembre: a apelação geralmente suspende os efeitos da sentença, mas o CPC traz exceções.</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="section" id="agravo-interno">
+    <div class="section-header">
+      <div class="section-number">03</div>
+      <div>
+        <div class="section-title">Agravo Interno</div>
+        <div class="section-subtitle">Relator · Decisão monocrática · Colegiado</div>
+      </div>
+    </div>
+
+    <p>O agravo interno serve para atacar decisão tomada por um relator sozinho. O objetivo é levar essa decisão individual para o órgão colegiado do próprio tribunal.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-title">Palavra-chave</div>
+        <p><span class="highlight">Decisão monocrática.</span> Se a decisão foi tomada por um julgador sozinho no tribunal, pense em agravo interno.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Não confunda</div>
+        <p>Se a decisão já é acórdão, ela já foi colegiada. Agravo interno não é o recurso normal contra acórdão.</p>
+      </div>
+    </div>
+
+    <div class="artigo-block">
+      <strong>CPC, art. 1.021</strong>
+      Contra decisão proferida pelo relator cabe agravo interno para o respectivo órgão colegiado.
+    </div>
+
+    <div class="exemplo">O relator nega seguimento à apelação dizendo que ela é intempestiva. A parte entende que o prazo foi contado errado. Ela interpõe agravo interno para que a turma ou câmara analise.</div>
+
+    <details>
+      <summary>Como responder em prova</summary>
+      <div class="details-body">
+        <p>Procure as expressões “relator”, “decisão monocrática”, “decisão individual” ou “negou seguimento sozinho”. Se aparecerem, o recurso provável é agravo interno.</p>
+        <p>O agravante deve atacar especificamente os fundamentos da decisão agravada. Repetir argumentos sem enfrentar a decisão costuma ser problema.</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="section" id="embargos">
+    <div class="section-header">
+      <div class="section-number">04</div>
+      <div>
+        <div class="section-title">Embargos de Declaração</div>
+        <div class="section-subtitle">Omissão · Contradição · Obscuridade · Erro material</div>
+      </div>
+    </div>
+
+    <p>Embargos de declaração não são, em regra, uma nova chance para discutir tudo. Eles servem para pedir que o julgador corrija um defeito da decisão.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-title">Cabimento</div>
+        <ul>
+          <li>Omissão: decisão deixou de analisar ponto relevante</li>
+          <li>Contradição: a decisão se contradiz internamente</li>
+          <li>Obscuridade: texto confuso ou pouco claro</li>
+          <li>Erro material: erro evidente, como grafia ou cálculo</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Efeito importante</div>
+        <p>Os embargos interrompem o prazo para outros recursos. Depois do julgamento, o prazo recomeça por inteiro.</p>
+      </div>
+    </div>
+
+    <div class="artigo-block">
+      <strong>CPC, arts. 1.022 e 1.023</strong>
+      Cabem embargos de declaração contra qualquer decisão judicial para esclarecer obscuridade, eliminar contradição, suprir omissão ou corrigir erro material. O prazo é de 5 dias.
+    </div>
+
+    <div class="exemplo">O acórdão julgou a apelação, mas não analisou a prescrição alegada pela parte. Cabem embargos de declaração por omissão.</div>
+
+    <details>
+      <summary>Pegadinha clássica</summary>
+      <div class="details-body">
+        <p>Embargos de declaração podem alterar o resultado, mas isso é consequência da correção do vício. O nome disso é efeito modificativo ou infringente.</p>
+        <p>Embargos usados apenas para atrasar o processo podem gerar multa.</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="section" id="excepcionais">
+    <div class="section-header">
+      <div class="section-number">05</div>
+      <div>
+        <div class="section-title">Recurso Extraordinário e Recurso Especial</div>
+        <div class="section-subtitle">STF · STJ · Recursos excepcionais</div>
+      </div>
+    </div>
+
+    <p>Recurso extraordinário e recurso especial são chamados de recursos excepcionais. Eles não funcionam como uma terceira instância comum para reexaminar provas. Servem para proteger a Constituição e uniformizar a interpretação da lei federal.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Recurso</th>
+            <th>Vai para</th>
+            <th>Discute</th>
+            <th>Base constitucional</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Recurso extraordinário</td>
+            <td>STF</td>
+            <td>Questão constitucional direta</td>
+            <td>CF, art. 102, III</td>
+          </tr>
+          <tr>
+            <td>Recurso especial</td>
+            <td>STJ</td>
+            <td>Questão de lei federal infraconstitucional</td>
+            <td>CF, art. 105, III</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-title">Recurso Extraordinário</div>
+        <p>Usado quando o acórdão viola diretamente a Constituição. Também exige repercussão geral, isto é, relevância que ultrapasse o interesse das partes.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Recurso Especial</div>
+        <p>Usado quando o acórdão viola lei federal, nega vigência a lei federal ou diverge de outro tribunal na interpretação dessa lei.</p>
+      </div>
+    </div>
+
+    <div class="artigo-block">
+      <strong>Prequestionamento</strong>
+      Para RE ou REsp, a matéria precisa ter sido enfrentada pelo tribunal de origem. Se o acórdão não tratou do tema, normalmente a parte usa embargos de declaração para provocar manifestação.
+    </div>
+
+    <div class="exemplo">O tribunal estadual interpreta uma lei federal de modo contrário ao entendimento do STJ. A parte pode tentar recurso especial. Se o problema for violação direta à Constituição, o caminho pode ser recurso extraordinário.</div>
+
+    <details>
+      <summary>Atualização importante sobre REsp</summary>
+      <div class="details-body">
+        <p>A Constituição passou a prever a relevância da questão federal no recurso especial. Porém, o STJ firmou orientação administrativa de que essa demonstração só será exigida para recursos interpostos contra acórdãos publicados após a entrada em vigor da lei regulamentadora.</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="section" id="agravo-resp-re">
+    <div class="section-header">
+      <div class="section-number">06</div>
+      <div>
+        <div class="section-title">Agravo em RE ou REsp</div>
+        <div class="section-subtitle">Inadmissão · Destrancamento · Tribunais superiores</div>
+      </div>
+    </div>
+
+    <p>Esse agravo é usado quando o tribunal de origem não admite o recurso especial ou extraordinário. Por isso, a função dele é “destrancar” o recurso excepcional.</p>
+
+    <div class="flow">
+      <div class="flow-step">
+        <strong>1. Acórdão do tribunal</strong>
+        A parte entende que há questão constitucional ou federal.
+      </div>
+      <div class="flow-step">
+        <strong>2. Interposição de RE ou REsp</strong>
+        O recurso é apresentado no tribunal de origem.
+      </div>
+      <div class="flow-step">
+        <strong>3. Tribunal de origem inadmite</strong>
+        A presidência ou vice-presidência barra a subida do recurso.
+      </div>
+      <div class="flow-step">
+        <strong>4. Agravo em RE/REsp</strong>
+        A parte tenta levar a discussão de admissibilidade ao STF ou STJ.
+      </div>
+    </div>
+
+    <div class="artigo-block">
+      <strong>CPC, art. 1.042</strong>
+      Cabe agravo contra decisão do presidente ou vice-presidente do tribunal que inadmitir recurso extraordinário ou recurso especial, observadas as hipóteses legais.
+    </div>
+
+    <div class="exemplo">O tribunal de origem afirma que não houve prequestionamento e inadmite o REsp. A parte entende que o acórdão enfrentou a lei federal. Ela interpõe agravo em recurso especial.</div>
+
+    <details>
+      <summary>Diferença para agravo interno</summary>
+      <div class="details-body">
+        <p>Agravo interno ataca decisão monocrática do relator dentro do tribunal. Agravo em RE ou REsp ataca a inadmissão do recurso excepcional pelo tribunal de origem.</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="section" id="advogado">
+    <div class="section-header">
+      <div class="section-number">07</div>
+      <div>
+        <div class="section-title">Recorribilidade Autônoma do Advogado</div>
+        <div class="section-subtitle">Honorários · Direito próprio · Legitimidade</div>
+      </div>
+    </div>
+
+    <p>A regra geral é que a parte recorre. Mas, quando a discussão envolve honorários de sucumbência, o advogado possui interesse próprio, porque essa verba pertence a ele.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-title">Ideia central</div>
+        <p>Honorários sucumbenciais são direito do advogado e têm natureza alimentar. Por isso, o advogado pode recorrer em nome próprio para discutir essa verba.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Exemplo de prova</div>
+        <p>A sentença fixa honorários muito baixos. O advogado da parte vencedora pode recorrer para pedir majoração dos honorários.</p>
+      </div>
+    </div>
+
+    <div class="artigo-block">
+      <strong>CPC, art. 85, §14</strong>
+      Os honorários constituem direito do advogado e têm natureza alimentar, sendo vedada a compensação em caso de sucumbência parcial.
+    </div>
+
+    <details>
+      <summary>Cuidado com a amplitude</summary>
+      <div class="details-body">
+        <p>A recorribilidade autônoma do advogado não significa que ele pode recorrer sobre qualquer ponto da causa como se fosse a parte. O interesse próprio está ligado aos honorários.</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="section" id="multa">
+    <div class="section-header">
+      <div class="section-number">08</div>
+      <div>
+        <div class="section-title">Multa do Agravo Interno</div>
+        <div class="section-subtitle">Art. 1.021 · Abuso · Não automática</div>
+      </div>
+    </div>
+
+    <p>A multa do agravo interno é uma sanção para recurso abusivo. A principal pegadinha é: <span class="highlight">ela não é automática</span> só porque o agravo foi negado por unanimidade.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Ponto</th>
+            <th>Explicação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Quando pode aplicar</td>
+            <td>Quando o agravo interno for manifestamente inadmissível ou manifestamente improcedente, em votação unânime e decisão fundamentada.</td>
+          </tr>
+          <tr>
+            <td>Valor</td>
+            <td>Entre 1% e 5% do valor atualizado da causa.</td>
+          </tr>
+          <tr>
+            <td>Quem recebe</td>
+            <td>O agravado, ou seja, a parte contrária.</td>
+          </tr>
+          <tr>
+            <td>Pegadinha</td>
+            <td>O mero não provimento do agravo interno não basta. É preciso manifesta inadmissibilidade, manifesta improcedência ou caráter abusivo/protelatório.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exemplo">Se a parte interpõe agravo interno contra acórdão, embora esse recurso só caiba contra decisão monocrática, o tribunal pode considerar o recurso manifestamente inadmissível e aplicar multa.</div>
+
+    <div class="artigo-block">
+      <strong>STJ</strong>
+      A jurisprudência do STJ afirma que a multa do art. 1.021, §4º, do CPC não é decorrência automática do não provimento unânime do agravo interno.
+    </div>
+  </section>
+
+  <section class="section" id="roteiro">
+    <div class="section-header">
+      <div class="section-number">09</div>
+      <div>
+        <div class="section-title">Roteiro Mental de Escolha</div>
+        <div class="section-subtitle">Método rápido para resolver questões</div>
+      </div>
+    </div>
+
+    <div class="flow">
+      <div class="flow-step"><strong>Sentença?</strong> Pense em apelação.</div>
+      <div class="flow-step"><strong>Decisão monocrática do relator?</strong> Pense em agravo interno.</div>
+      <div class="flow-step"><strong>Omissão, contradição, obscuridade ou erro material?</strong> Pense em embargos de declaração.</div>
+      <div class="flow-step"><strong>Violação direta à Constituição?</strong> Pode ser recurso extraordinário.</div>
+      <div class="flow-step"><strong>Violação de lei federal?</strong> Pode ser recurso especial.</div>
+      <div class="flow-step"><strong>RE ou REsp inadmitido?</strong> Pense em agravo em recurso especial ou extraordinário.</div>
+      <div class="flow-step"><strong>Honorários do advogado?</strong> Lembre da recorribilidade autônoma do advogado.</div>
+    </div>
+  </section>
+
+  <section id="quiz-section">
+    <div class="section-header">
+      <div class="section-number">10</div>
+      <div>
+        <div class="section-title">Questões de Treino</div>
+        <div class="section-subtitle">Clique na resposta e veja a explicação</div>
+      </div>
+    </div>
+
+    <p class="quiz-intro">Use estas questões para testar se você consegue identificar rapidamente o recurso adequado.</p>
+
+    <div id="quiz"></div>
+
+    <div class="score-bar" id="score-bar">
+      <div class="score-num" id="score-num">0/0</div>
+      <div class="score-label">resultado do treino</div>
+      <div class="score-msg" id="score-msg"></div>
+      <button class="reset-btn" onclick="resetQuiz()">Refazer questões</button>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  Material de estudo para revisão. Consulte sempre o CPC, a Constituição, a jurisprudência atualizada e o conteúdo do professor.
+</footer>
+
+<script>
+const questions = [
+  {
+    q: "O juiz de primeiro grau proferiu sentença julgando improcedente o pedido do autor. Qual é o recurso adequado?",
+    options: ["Agravo interno", "Apelação", "Embargos de declaração", "Agravo em recurso especial"],
+    correct: 1,
+    fb: "A sentença é atacada, em regra, por apelação. Essa é a associação mais importante: sentença = apelação."
+  },
+  {
+    q: "O relator, sozinho, negou seguimento a um recurso no tribunal. A parte quer que o colegiado analise a decisão. Qual recurso deve usar?",
+    options: ["Agravo interno", "Recurso especial", "Apelação", "Recurso extraordinário"],
+    correct: 0,
+    fb: "Contra decisão monocrática do relator cabe agravo interno, dirigido ao respectivo órgão colegiado."
+  },
+  {
+    q: "O acórdão deixou de analisar argumento relevante sobre prescrição. O que a parte deve apresentar primeiro?",
+    options: ["Apelação", "Embargos de declaração", "Agravo em recurso extraordinário", "Pedido de reconsideração"],
+    correct: 1,
+    fb: "A ausência de análise de ponto relevante é omissão. O recurso adequado é embargos de declaração."
+  },
+  {
+    q: "Qual é o prazo dos embargos de declaração no processo civil?",
+    options: ["15 dias úteis", "10 dias corridos", "5 dias úteis", "48 horas"],
+    correct: 2,
+    fb: "Embargos de declaração têm prazo de 5 dias úteis. É a grande exceção em relação ao prazo comum de 15 dias úteis."
+  },
+  {
+    q: "Um acórdão viola diretamente dispositivo da Constituição Federal. Em tese, qual recurso excepcional pode ser cabível?",
+    options: ["Recurso especial", "Recurso extraordinário", "Agravo interno", "Apelação"],
+    correct: 1,
+    fb: "Questão constitucional direta é matéria de recurso extraordinário ao STF."
+  },
+  {
+    q: "Um acórdão interpreta lei federal de modo contrário ao entendimento do STJ. Em tese, qual recurso pode ser cabível?",
+    options: ["Recurso especial", "Recurso extraordinário", "Embargos de declaração sempre", "Agravo de instrumento"],
+    correct: 0,
+    fb: "Questão de lei federal infraconstitucional é matéria de recurso especial ao STJ."
+  },
+  {
+    q: "O tribunal de origem inadmitiu o recurso especial. A parte quer destrancar o recurso para o STJ. Qual é o caminho típico?",
+    options: ["Agravo interno sempre", "Agravo em recurso especial", "Apelação", "Embargos infringentes"],
+    correct: 1,
+    fb: "Quando o REsp é inadmitido na origem, o caminho típico é o agravo em recurso especial, conforme o art. 1.042 do CPC."
+  },
+  {
+    q: "A sentença fixou honorários sucumbenciais em valor muito baixo. O advogado pode recorrer em nome próprio para discutir essa verba?",
+    options: ["Não, nunca", "Sim, porque honorários são direito do advogado", "Só se o juiz autorizar", "Só no processo penal"],
+    correct: 1,
+    fb: "Honorários sucumbenciais são direito do advogado e possuem natureza alimentar. Daí a recorribilidade autônoma nessa matéria."
+  },
+  {
+    q: "O agravo interno foi negado por unanimidade. A multa do art. 1.021, §4º, é automática?",
+    options: ["Sim, sempre", "Não, depende de manifesta inadmissibilidade ou improcedência e decisão fundamentada", "Sim, se o processo for cível", "Não existe multa no agravo interno"],
+    correct: 1,
+    fb: "A multa não é automática. O STJ exige análise do caso concreto e caráter manifesto da inadmissibilidade ou improcedência."
+  },
+  {
+    q: "Qual expressão costuma indicar o cabimento de embargos de declaração?",
+    options: ["Decisão monocrática", "Sentença", "Omissão", "Inadmissão de REsp"],
+    correct: 2,
+    fb: "Omissão, contradição, obscuridade e erro material são as palavras-chave dos embargos de declaração."
+  }
+];
+
+let answered = 0;
+let score = 0;
+
+function renderQuiz() {
+  const quiz = document.getElementById('quiz');
+  quiz.innerHTML = questions.map((question, index) => `
+    <div class="question-card" id="qcard-${index}">
+      <div class="question-header">
+        <div class="q-num">${String(index + 1).padStart(2, '0')}</div>
+        <div class="q-text">${question.q}</div>
+      </div>
+      <div class="options">
+        ${question.options.map((option, optIndex) => `
+          <button class="option-btn" onclick="answerQuestion(${index}, ${optIndex})">
+            <span class="opt-letter">${String.fromCharCode(65 + optIndex)}</span>
+            <span>${option}</span>
+          </button>
+        `).join('')}
+      </div>
+      <div class="feedback" id="feedback-${index}"></div>
+    </div>
+  `).join('');
+}
+
+function answerQuestion(qIndex, optIndex) {
+  const card = document.getElementById(`qcard-${qIndex}`);
+  if (card.dataset.answered === 'true') return;
+
+  const question = questions[qIndex];
+  const buttons = card.querySelectorAll('.option-btn');
+  const feedback = document.getElementById(`feedback-${qIndex}`);
+  const isCorrect = optIndex === question.correct;
+
+  card.dataset.answered = 'true';
+  answered += 1;
+  if (isCorrect) score += 1;
+
+  buttons.forEach((button, index) => {
+    button.disabled = true;
+    if (index === question.correct) button.classList.add('correct');
+    if (index === optIndex && !isCorrect) button.classList.add('wrong');
+  });
+
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  feedback.classList.add('show', isCorrect ? 'correct-fb' : 'wrong-fb');
+  feedback.innerHTML = `<strong>${isCorrect ? 'Correto.' : 'Atenção.'}</strong> ${question.fb}`;
+
+  if (answered === questions.length) showScore();
+}
+
+function showScore() {
+  const scoreBar = document.getElementById('score-bar');
+  const scoreNum = document.getElementById('score-num');
+  const scoreMsg = document.getElementById('score-msg');
+  const percentage = Math.round((score / questions.length) * 100);
+
+  scoreNum.textContent = `${score}/${questions.length}`;
+  if (percentage >= 80) {
+    scoreMsg.textContent = 'Muito bom. Você já está identificando bem os recursos.';
+  } else if (percentage >= 60) {
+    scoreMsg.textContent = 'Bom começo. Revise as pegadinhas e refaça as questões.';
+  } else {
+    scoreMsg.textContent = 'Revise a tabela inicial e o roteiro mental antes de tentar novamente.';
+  }
+  scoreBar.classList.add('show');
+}
+
+function resetQuiz() {
+  answered = 0;
+  score = 0;
+  document.getElementById('score-bar').classList.remove('show');
+  renderQuiz();
+  document.getElementById('quiz-section').scrollIntoView({ behavior: 'smooth' });
+}
+
+renderQuiz();
+</script>
+
+</body>
+</html>
